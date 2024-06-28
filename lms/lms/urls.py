@@ -1,0 +1,88 @@
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views,hod_views,staff_views,student_views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('base/',views.BASE,name='base'),
+    path('login',views.LOGIN,name='login'),
+    path('doLogin',views.doLogin,name='doLogin'),
+    path('',views.REGISTER,name='register'),
+    path('register_student',views.REGISTER_STUDENT,name='register_student'),
+    path('register_staff',views.REGISTER_STAFF,name='register_staff'),
+    #PROFILE UPDATE
+    path('Profile',views.PROFILE,name='profile'),
+    #HOD PANEL URL
+    path('Hod/Home',hod_views.HOME,name='hod_home'),
+    path('Hod/Student/Add',hod_views.ADD_STUDENT,name='add_student'),
+    path('Profile/update',views.PROFILE_UPDATE,name='profile_update'),
+    path('doLogout',views.doLogout,name='logout'),
+    path('Hod/Student/View',hod_views.VIEW_STUDENT,name='view_student'),
+    path('Hod/Student/Edit/<str:id>',hod_views.EDIT_STUDENT,name='edit_student'),
+    path('Hod/Student/Update',hod_views.UPDATE_STUDENT,name='update_student'),
+    path('Hod/Student/Delete/<str:admin>',hod_views.DELETE_STUDENT,name='delete_student'),
+    #Staff
+    path('Hod/Staff/Add',hod_views.ADD_STAFF,name='add_staff'),
+    path('Hod/Staff/View',hod_views.VIEW_STAFF,name='view_staff'),
+    path('Hod/Staff/Edit/<str:id>',hod_views.EDIT_STAFF,name='edit_staff'),
+    path('Hod/Staff/Update',hod_views.UPDATE_STAFF,name='update_staff'),
+    path('Hod/Staff/Delete/<str:admin>',hod_views.DELETE_STAFF,name='delete_staff'),
+    #course
+    path('Hod/Course/Add',hod_views.ADD_COURSE,name='add_course'),
+    path('Hod/Course/View',hod_views.VIEW_COURSE,name='view_course'),
+    path('Hod/Course/Edit/<str:id>',hod_views.EDIT_COURSE,name='edit_course'),
+    path('Hod/Course/Update',hod_views.UPDATE_COURSE,name='update_course'),
+    path('Hod/Course/Delete/<str:id>',hod_views.DELETE_COURSE,name='delete_course'),
+    #subject
+    path('Hod/Subject/Add',hod_views.ADD_SUBJECT,name='add_subject'),
+    path('Hod/Subject/View',hod_views.VIEW_SUBJECT,name='view_subject'),
+    path('Hod/Subject/Edit/<str:id>',hod_views.EDIT_SUBJECT,name='edit_subject'),
+    path('Hod/Subject/Update',hod_views.UPDATE_SUBJECT,name='update_subject'),
+    path('Hod/Subject/Delete/<str:id>',hod_views.DELETE_SUBJECT,name='delete_subject'),
+    #session
+    path('Hod/Session/Add',hod_views.ADD_SESSION,name='add_session'),
+    path('Hod/Session/View',hod_views.VIEW_SESSION,name='view_session'),
+    path('Hod/Session/Edit/<str:id>',hod_views.EDIT_SESSION,name='edit_session'),
+    path('Hod/Session/Update',hod_views.UPDATE_SESSION,name='update_session'),
+    path('Hod/Session/Delete/<str:id>',hod_views.DELETE_SESSION,name='delete_session'),
+    path('Hod/Staff/Send_Notification',hod_views.STAFF_SEND_NOTIFICATION,name='send_staff_notification'),
+    path('Hod/Staff/save_notification',hod_views.SAVE_STAFF_NOTIFICATION,name='save_staff_notification'),
+    path('Hod/Staff/Leave_view',hod_views.STAFF_LEAF_VIEW,name='staff_leave_view'),
+    path('Hod/Staff/Approve_leave/<str:id>',hod_views.STAFF_APPROVE_LEAVE,name='staff_approve_leave'),
+    path('Hod/Staff/DisApprove_leave/<str:id>',hod_views.STAFF_DISAPPROVE_LEAVE,name='staff_disapprove_leave'),
+    path('Hod/Staff/feedback',hod_views.STAFF_FEEDBACK,name='staff_feedback_2'),
+    path('Hod/Staff/feedback/save',hod_views.STAFF_FEEDBACK_SAVE,name='staff_feedback_reply_save'),
+    path('Hod/Student/Send_Notification',hod_views.STUDENT_SEND_NOTIFICATION,name='send_student_notification'),
+    path('Hod/Student/save_notification',hod_views.SAVE_STUDENT_NOTIFICATION,name='save_student_notification'),
+    path('Hod/Student/Leave_view',hod_views.STUDENT_LEAF_VIEW,name='student_leave_view'),
+    path('Hod/Student/Approve_leave/<str:id>',hod_views.STUDENT_APPROVE_LEAVE,name='student_approve_leave'),
+    path('Hod/Student/DisApprove_leave/<str:id>',hod_views.STUDENT_DISAPPROVE_LEAVE,name='student_disapprove_leave'),
+    path('Hod/Student/feedback',hod_views.STUDENT_FEEDBACK,name='student_feedback_2'),
+    path('Hod/Student/feedback/save',hod_views.STUDENT_FEEDBACK_SAVE,name='student_feedback_reply_save'),
+    path('Hod/View_Attendance',hod_views.VIEW_ATTENDANCE,name='hod_view_attendance'),
+    #staff urls
+    path('Staff/Home',staff_views.HOME,name='staff_home'),
+    path('Staff/Notifications',staff_views.NOTIFICATIONS,name='notifications'),
+    path('Staff/mark_As_done/<str:status>',staff_views.STAFF_NOTIFICATION_DONE,name='staff_notification_done'),
+    path('Staff/Apply_leave',staff_views.STAFF_APPLY_LEAVE,name='staff_apply_leave'),
+    path('Staff/Apply_leave_save',staff_views.STAFF_APPLY_LEAVE_SAVE,name='staff_apply_leave_save'),
+    path('Staff/Feedback',staff_views.STAFF_FEEDBACK,name='staff_feedback'),
+    path('Staff/Feedback/Save',staff_views.STAFF_FEEDBACK_SAVE,name='staff_feedback_save'),
+    path('Staff/Take_Attendance',staff_views.STAFF_TAKE_ATTENDANCE,name='staff_take_attendance'),
+    path('Staff/Save_Attendance',staff_views.STAFF_SAVE_ATTENDANCE,name='staff_save_attendance'),
+    path('Staff/View_Attendance',staff_views.STAFF_VIEW_ATTENDANCE,name='staff_view_attendance'),
+    path('Staff/Add_Result',staff_views.STAFF_ADD_RESULT,name='staff_add_result'),
+    path('Staff/Save_Result',staff_views.STAFF_SAVE_RESULT,name='staff_save_result'),
+    #student urls
+    path('Student/Home',student_views.HOME,name='student_home'),
+    path('Student/Notifications',student_views.NOTIFICATIONS,name='student_notifications'),
+    path('Student/mark_As_done/<str:status>',student_views.STUDENT_NOTIFICATION_DONE,name='student_notification_done'),
+    path('Student/Apply_leave',student_views.STUDENT_APPLY_LEAVE,name='student_apply_leave'),
+    path('Student/Apply_leave_save',student_views.STUDENT_APPLY_LEAVE_SAVE,name='student_apply_leave_save'),
+    path('Student/Feedback',student_views.STUDENT_FEEDBACK,name='student_feedback'),
+    path('Student/Feedback/Save',student_views.STUDENT_FEEDBACK_SAVE,name='student_feedback_save'),
+    path('Student/View_Attendance',student_views.STUDENT_VIEW_ATTENDANCE,name='student_view_attendance'),
+    path('Student/View_Result',student_views.STUDENT_VIEW_RESULT,name='student_view_result'),
+
+] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
