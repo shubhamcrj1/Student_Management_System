@@ -72,7 +72,6 @@ def PROFILE_UPDATE(request):
 
     return render(request,'profile.html')
 
-@login_required(login_url='/')
 def REGISTER_STUDENT(request):
     course = Course.objects.all()
     session_year = Session_Year.objects.all()
@@ -127,7 +126,6 @@ def REGISTER_STUDENT(request):
             }
     return render(request,'register_student.html',context)
 
-@login_required(login_url='/')
 def REGISTER_STAFF(request):
     if request.method == 'POST':
         profile_pic =request.FILES.get('profile_pic')
@@ -164,6 +162,5 @@ def REGISTER_STAFF(request):
 
     return render(request,'register_staff.html')
 
-@login_required(login_url='/')
 def REGISTER(request):
     return render(request,'register.html')
